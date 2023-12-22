@@ -11,7 +11,7 @@ public class CameraMoving : MonoBehaviour
     const float fscale = 0.01f;
     const float zoomSpeed = 0.005f;
 
-    Camera camera;
+    Camera mainCamera;
     Vector2 vscale = new Vector2(fscale, fscale);
     Vector2 startPos;
     Vector2 curPos;
@@ -21,7 +21,7 @@ public class CameraMoving : MonoBehaviour
 
     void Start()
     {
-        camera = GetComponent<Camera>();
+        mainCamera = GetComponent<Camera>();
     }
 
     void Update()
@@ -40,8 +40,8 @@ public class CameraMoving : MonoBehaviour
                 if(this.hold)
                 {
                     this.curPos = Input.mousePosition;
-                    transform.Translate((camera.orthographicSize / 5) * vscale * (startPos - curPos));
-                    if(outside()) transform.Translate((camera.orthographicSize / 5) * vscale * (curPos - startPos));
+                    transform.Translate((mainCamera.orthographicSize / 5) * vscale * (startPos - curPos));
+                    if(outside()) transform.Translate((mainCamera.orthographicSize / 5) * vscale * (curPos - startPos));
                     startPos = curPos;
                 }
             }
@@ -60,10 +60,10 @@ public class CameraMoving : MonoBehaviour
                 float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
 
                 // zoom camera
-                float newSize = camera.orthographicSize + (deltaMagnitudeDiff * zoomSpeed);
+                float newSize = mainCamera.orthographicSize + (deltaMagnitudeDiff * zoomSpeed);
                 newSize = Mathf.Max(newSize, 1f);
                 newSize = Mathf.Min(newSize, 6f);
-                camera.orthographicSize = newSize;
+                mainCamera.orthographicSize = newSize;
             }
         }
     }
