@@ -28,6 +28,7 @@ public class SoundManager : MonoBehaviour
             case "ButtonClick": index = 0; break;
             case "MenuOpen": index = 1; break;
             case "ToggleClick": index = 2; break;
+            case "EatSound": index = 3; break;
         }
 
         SFX.clip = audio_clips[index];
