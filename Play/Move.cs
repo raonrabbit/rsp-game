@@ -174,7 +174,7 @@ public class Move : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other){
         if(other.collider.CompareTag(counterObject.tag) && !isDestroyed){
-            SoundManager.instance.PlaySFXSound("EatSound");
+            SoundManager.instance.PlayMobSound();
             isDestroyed = true;
             GameManager.instance.pool.ReturnQ(gameObject);
             GameObject obj = GameManager.instance.pool.Get(counterObject);

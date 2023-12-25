@@ -4,9 +4,13 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance = null;
-    public AudioClip[] audio_clips;
+    public AudioClip[] SFX_clips;
+    public AudioClip MobSound;
+    int currentPlayCount = 0;
+    int maxPlayCount = 2;
     AudioSource BGM;
     AudioSource SFX;
+    AudioSource MOBSOUND;
     
     void Awake()
     {
@@ -19,6 +23,7 @@ public class SoundManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         BGM = GameObject.Find("BGM").GetComponent<AudioSource>();
         SFX = GameObject.Find("SFX").GetComponent<AudioSource>();
+        MOBSOUND = GameObject.Find("MOBSOUND").GetComponent<AudioSource>();
     }
 
     public void PlaySFXSound(string type){
@@ -28,10 +33,24 @@ public class SoundManager : MonoBehaviour
             case "ButtonClick": index = 0; break;
             case "MenuOpen": index = 1; break;
             case "ToggleClick": index = 2; break;
-            case "EatSound": index = 3; break;
         }
 
-        SFX.clip = audio_clips[index];
+        SFX.clip = SFX_clips[index];
         SFX.PlayOneShot(SFX.clip);
+    }
+
+    public void PlayMobSound(){
+        if(currentPlayCount > maxPlayCount) return;
+
+        currentPlayCount++;
+
+        MOBSOUND.PlayOneShot(MobSound);
+
+        StartCoroutine(ResetIsPlaying(MobSound.length));
+    }
+
+    IEnumerator ResetIsPlaying(float delay){
+        yield return new WaitForSeconds(delay);
+        currentPlayCount--;
     }
 }
