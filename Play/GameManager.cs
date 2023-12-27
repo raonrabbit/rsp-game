@@ -7,6 +7,7 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public static bool isWindowActive;
     public PoolManager pool;
     public Text Rock_count;
     public Text Scissers_count;
@@ -39,6 +40,8 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetFloat("Speed", 3 * 0.25f);
         }
+
+        isWindowActive = false;
     }
 
     void Start(){
