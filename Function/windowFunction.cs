@@ -5,7 +5,6 @@ using UnityEngine;
 public class windowFunction : MonoBehaviour
 {
     public float animationTime = 0.2f;
-    private bool isActive = false;
     public void onClick(){
         if(gameObject.activeSelf){
             Hide(); 
@@ -16,16 +15,14 @@ public class windowFunction : MonoBehaviour
 
     public void Show()
     {
-        if(isActive) return;
-        isActive = true;
+        if(gameObject.activeSelf) return;
         gameObject.SetActive(true);
         StartCoroutine(scaleChangeAnimation(Vector2.zero, Vector2.one));
     }
 
     public void Hide()
     {
-        if(!isActive) return;
-        isActive = false;
+        if(!gameObject.activeSelf) return;
         StartCoroutine(scaleChangeAnimation(Vector2.one, Vector2.zero));
         //gameObject.SetActive(false);
         StartCoroutine(DeactivateAfterDelay(animationTime));

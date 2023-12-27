@@ -15,8 +15,7 @@ public class GameManager : MonoBehaviour
     public windowFunction resultWindow;
     public windowFunction amoutSetWindow;
     public windowFunction soundSetWindow;
-    public TMP_Text winLose;
-    public Transform WinnerObjectPosition;
+    public windowFunction retryFocus;
     public GameObject[] WinnerObjects;
 
     private bool gameEnded;
@@ -77,7 +76,7 @@ public class GameManager : MonoBehaviour
 
     void showResult(string winnername){
         resultWindow.Show();
-        winLose.GetComponent<TMP_Text>().text = winnername + " won!!";
+        retryFocus.Show();
         if(winnername == "Rock") WinnerObjects[0].SetActive(true);
         else if(winnername == "Scissors") WinnerObjects[1].SetActive(true);
         else if(winnername == "Paper") WinnerObjects[2].SetActive(true);
