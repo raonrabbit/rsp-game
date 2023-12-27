@@ -12,7 +12,7 @@ public class StartSetter : MonoBehaviour
     public GameObject range01;
     public GameObject range02;
     public GameObject range03;
-    public GameObject AmountSetUI;
+    public windowFunction amountSetWindow;
 
     public List<GameObject> spawnedObject01 = new List<GameObject>();
     public List<GameObject> spawnedObject02 = new List<GameObject>();
@@ -82,7 +82,7 @@ public class StartSetter : MonoBehaviour
     }
 
     public void OnClickStart(){
-        AmountSetUI.SetActive(false);
+        amountSetWindow.Hide();
         freeObjects(spawnedObject01);
         freeObjects(spawnedObject02);
         freeObjects(spawnedObject03);

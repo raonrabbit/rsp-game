@@ -12,7 +12,9 @@ public class GameManager : MonoBehaviour
     public Text Scissers_count;
     public Text Paper_count;
 
-    public GameObject resultPanel;
+    public windowFunction resultWindow;
+    public windowFunction amoutSetWindow;
+    public windowFunction soundSetWindow;
     public TMP_Text winLose;
     public Transform WinnerObjectPosition;
     public GameObject[] WinnerObjects;
@@ -38,6 +40,12 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetFloat("Speed", 3 * 0.25f);
         }
+    }
+
+    void Start(){
+        amoutSetWindow.Show();
+        resultWindow.Hide();
+        soundSetWindow.Hide();
     }
 
     void Update(){
@@ -68,7 +76,7 @@ public class GameManager : MonoBehaviour
     }
 
     void showResult(string winnername){
-        resultPanel.SetActive(true);
+        resultWindow.Show();
         winLose.GetComponent<TMP_Text>().text = winnername + " won!!";
         if(winnername == "Rock") WinnerObjects[0].SetActive(true);
         else if(winnername == "Scissors") WinnerObjects[1].SetActive(true);
